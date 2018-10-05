@@ -43,7 +43,7 @@ for i in server-settings map-gen-settings map-settings ; do
         cp -v $FACTORIO_HOME/data/${i}.example.json \
             $FACTORIO_CONFIGDIR/${i}.json || exit 1
     fi
-fi
+done
 
 # Save Files
 find -L $FACTORIO_SAVESDIR -type f -iname '*.tmp.zip' -exec \
