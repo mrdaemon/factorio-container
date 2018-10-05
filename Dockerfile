@@ -16,7 +16,7 @@ ENV FACTORIO_PORT 34197
 ENV FACTORIO_RCON_PORT 27015
 
 # Create runtime directories
-RUN mkdir -p /opt/factorio/{volume,config}
+RUN mkdir -p /opt/factorio/{volume/{config,saves,mods},config}
 
 WORKDIR /opt/factorio
 
