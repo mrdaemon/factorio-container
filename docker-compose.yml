@@ -1,0 +1,5 @@
+version: '2'
+services:
+  factorio:
+    image: mrdaemon/factorio:latest
+    

@@ -13,29 +13,27 @@ if [[ $UID -eq 0 ]] ; then
     exit 1
 fi
 
-for d in "$FACTORIO_SAVESDIR" "$FACTORIO_CONFIGDIR" "$FACTORIO_MODSDIR" ; do
-    if [[ ! -w $d ]] ; then
-        >&2 echo "ERROR: Directory \"$d\" is not writable"
-        >&2 echo "  Did you set permissions on the volume correctly?"
-        >&2 echo "  Is the container configured to run as the correct user?"
-        exit 1
-    fi
-done
+if [[ ! -w $FACTORIO_VOLUME ]] ; then
+    >&2 echo "ERROR: Directory \"$FACTORIO_VOLUME\" is not writable"
+    >&2 echo "  Did you set permissions on the volume correctly?"
+    >&2 echo "  Is the container configured to run as the correct user?"
+    exit 1
+fi
 
 ## Initial run generation
 
 # RCON password
-if [[ ! -f $FACTORIO_CONFIGDIR/rconpw ]] ; then
+if [[ ! -f $FACTORIO_VOLUME/rconpw ]] ; then
     echo "Generating initial rcon password..."
-    $PWGEN 15 1 > $FACTORIO_CONFIGDIR/rconpw || exit 1
+    $PWGEN 15 1 > $FACTORIO_VOLUME/rconpw || exit 1
 fi
 
 # Configuration files
-mkdir -p $FACTORIO_CONFIGDIR/example
+mkdir -p $FACTORIO_VOLUME/exampleconfig
 
 for i in server-settings map-gen-settings map-settings ; do
     echo "Refreshing example ${i} with latest from distribution"
-    cp $FACTORIO_HOME/data/${i}.example.json $FACTORIO_CONFIGDIR/
+    cp $FACTORIO_HOME/data/${i}.example.json $FACTORIO_VOLUME/exampleconfig/
 
     # In case of missing config, create from defaults
     if [[ ! -f $FACTORIO_CONFIGDIR/${i}.json ]] ; then
@@ -73,7 +71,7 @@ echo "-----------------------------------------------------------------------"
 exec $FACTORIO_HOME/bin/x64/factorio \
     --port $FACTORIO_PORT \
     --rcon-port $FACTORIO_RCON_PORT \
-    --rcon-password "$(cat $FACTORIO_CONFIGDIR/rconpw)" \
+    --rcon-password "$(cat $FACTORIO_VOLUME/rconpw)" \
     --server-settings "$FACTORIO_CONFIGDIR/server-settings.json" \
     --server-whitelist "$FACTORIO_CONFIGDIR/server-whitelist.json" \
     --server-banlist "$FACTORIO_CONFIGDIR/server-banlist.json" \
