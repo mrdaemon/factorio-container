@@ -32,6 +32,7 @@ RUN curl -L $URL -o /tmp/archive_${VERSION}.txz && \
     rm -f /tmp/archive_${VERSION}.txz
 
 COPY scripts/run.sh .
+RUN chmod +x ./run.sh
 
 VOLUME [${FACTORIO_SAVESDIR}, ${FACTORIO_MODSDIR}, ${FACTORIO_CONFIGDIR}]
 
