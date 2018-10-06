@@ -68,7 +68,7 @@ echo "-----------------------------------------------------------------------"
 exec $FACTORIO_HOME/bin/x64/factorio \
     --port $FACTORIO_PORT \
     --rcon-port $FACTORIO_RCON_PORT \
-    --rcon-password "$(cat $FACTORIO_VOLUME/rconpw)" \
+    --rcon-password "$(head -n 1 $FACTORIO_VOLUME/rconpw)" \
     --server-settings "$FACTORIO_CONFIGDIR/server-settings.json" \
     --server-whitelist "$FACTORIO_CONFIGDIR/server-whitelist.json" \
     --server-banlist "$FACTORIO_CONFIGDIR/server-banlist.json" \
