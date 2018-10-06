@@ -23,7 +23,9 @@ Don't just pull and run random container off the internet and expect a good time
 ## What can I configure
 `//TODO: document this maybe`
 There are some environment variables you can change.
-The rest is going to be 
+The rest is going to be configuration files in the data volume, that are factorio specific.
+
+See the Dockerfile for a list.
 
 # Quickstart
 
