@@ -43,10 +43,7 @@ for i in server-settings map-gen-settings map-settings ; do
     fi
 done
 
-# Save Files
-find -L $FACTORIO_SAVESDIR -type f -iname '*.tmp.zip' -exec \
-    rm -f {} \;
-
+# Presence of initial save, generate new if missing
 if [[ ! -f ${FACTORIO_SAVESDIR}/save.zip ]] ; then
     $FACTORIO_HOME/bin/x64/factorio \
         --create $FACTORIO_SAVESDIR/save.zip \
