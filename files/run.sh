@@ -13,12 +13,21 @@ if [[ $UID -eq 0 ]] ; then
     exit 1
 fi
 
+# Verify that the user we're running at can write to the container
 if [[ ! -w $FACTORIO_VOLUME ]] ; then
     >&2 echo "ERROR: Directory \"$FACTORIO_VOLUME\" is not writable"
     >&2 echo "  Did you set permissions on the volume correctly?"
     >&2 echo "  Is the container configured to run as the correct user?"
     exit 1
 fi
+
+# Ensure base directories are present in volume
+for d in "$FACTORIO_CONFIGDIR" "$FACTORIO_SAVESDIR" "$FACTORIO_MODSDIR" ; do
+    if [[ ! -d $d ]] ; then
+        >&2 echo "WARNING: $d is missing in volume, creating..."
+        mkdir -p $d || exit 1
+    fi
+done
 
 ## Initial run generation
 
