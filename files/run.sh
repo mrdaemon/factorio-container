@@ -48,7 +48,7 @@ if [[ ! -f ${FACTORIO_SAVESDIR}/save.zip ]] ; then
     $FACTORIO_HOME/bin/x64/factorio \
         --create $FACTORIO_SAVESDIR/save.zip \
         --map-gen-settings $FACTORIO_CONFIGDIR/map-gen-settings.json \
-        --map-settings $FACTORIO_CONFIGDIR/map-settings.json
+        --map-settings $FACTORIO_CONFIGDIR/map-settings.json || exit 1
     echo "Initial map created using $FACTORIO_CONFIGDIR/map*.json"
 fi
 
