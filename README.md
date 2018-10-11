@@ -21,13 +21,21 @@ Sure, but whether or not you should is a different question.
 Don't just pull and run random container off the internet and expect a good time, if you feel like using this, review it first.
 
 ## What can I configure
-`//TODO: document this maybe`
 There are some environment variables you can change.
 The rest is going to be configuration files in the data volume, that are factorio specific.
 
 See the Dockerfile for a list.
+Also see the `docker-compose.yml` file for an example compose file.
 
 # Quickstart
+
+## Quick Test
+
+1. Put your current uid in the `docker-compose.yml` file
+2. `$ docker-compose up --build`
+3. Data is under the `testvolume/` directory.
+
+## Production
 
 1. Create a user and group to use as a service account on the docker host, note the uid and gid. It can be a system user if you'd like (ex. 999:999).
 2. Create a directory tree somewhere on the host to hold the game data and configurations, e.g: `mkdir -p /srv/factorio/{config,saves,mods}`
