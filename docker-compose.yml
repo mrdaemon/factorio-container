@@ -1,5 +1,21 @@
-version: '2'
+# Development/testing compose file.
+# You can also use this as a reference.
+#
+# Make sure the uid in user: matches your current uid.
+version: '3'
 services:
   factorio:
-    image: mrdaemon/factorio:latest
+    user: 1000:1000 
+    build:
+      context: .
+    image: mrdaemon/factorio:experimental
+    environment:
+      FACTORIO_PORT: 34197
+      FACTORIO_RCON_PORT: 27015
+    ports:
+      - 34197:34197/udp
+      - 27015:27015/tcp
+    volumes:
+      - ./testvolume:/opt/factorio/volume 
+
     
