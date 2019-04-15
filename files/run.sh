@@ -79,6 +79,7 @@ exec $FACTORIO_HOME/bin/x64/factorio \
     --rcon-port $FACTORIO_RCON_PORT \
     --rcon-password "$(head -n 1 $FACTORIO_VOLUME/rconpw)" \
     --server-settings "$FACTORIO_CONFIGDIR/server-settings.json" \
+    --use-server-whitelist \
     --server-whitelist "$FACTORIO_CONFIGDIR/server-whitelist.json" \
     --server-banlist "$FACTORIO_CONFIGDIR/server-banlist.json" \
     --start-server-load-latest \
