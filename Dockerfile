@@ -1,8 +1,8 @@
 # Intermediate staging container
 FROM debian:9-slim AS staging
 
-ARG VERSION="0.17.31"
-ARG SHA256="0ff29d297697a0381692d314515d933c8cababdbed804e560fc27497a219859b"
+ARG VERSION="0.17.32"
+ARG SHA256="3c517bfca0400c199a40946133914ee5eb1c1a7324cf6e8fbd38fab3c15ad2c9"
 ARG URL="https://www.factorio.com/get-download/${VERSION}/headless/linux64"
 
 # Create staging directory
