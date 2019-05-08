@@ -13,7 +13,7 @@ if [[ $UID -eq 0 ]] ; then
     exit 1
 fi
 
-# Verify that the user we're running at can write to the container
+# Verify that the user we're running as can write to the container
 if [[ ! -w $FACTORIO_VOLUME ]] ; then
     >&2 echo "ERROR: Directory '$FACTORIO_VOLUME' is not writable"
     >&2 echo "  Did you set permissions on the volume correctly?"
