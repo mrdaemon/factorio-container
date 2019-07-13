@@ -1,5 +1,5 @@
 # Intermediate staging container
-FROM debian:9-slim AS staging
+FROM debian:10-slim AS staging
 
 ARG VERSION="0.17.43"
 ARG SHA256="b89e58541f511b9b5bc174b6ff353ee0eceab10e25dd99fbf488e236243f04b8"
@@ -21,7 +21,7 @@ RUN curl -L $URL -o /tmp/archive_${VERSION}.txz && \
     rm -f /tmp/archive_${VERSION}.txz
 
 # Runtime image
-FROM debian:9-slim
+FROM debian:10-slim
 
 LABEL maintainer="Alexandre Gauthier <alex@lab.underwares.org>" \
     description="Factorio Server"
