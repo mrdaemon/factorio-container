@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # Factorio Launcher
-# A wrapper script so basic it might as well wear a northface jacket
+# This wrapper script handles preparing configuration files,
+# generating missing ones (if any) and then starting up the server
 
+# Path to necessary binaries
 PWGEN="/usr/bin/pwgen"
 
 ## Sanity Checks
@@ -9,14 +11,15 @@ PWGEN="/usr/bin/pwgen"
 # Don't run as root within the container, also indicates lack of config
 if [[ $UID -eq 0 ]] ; then
     >&2 echo "ERROR: Refusing to start as root (uid 0)."
-    >&2 echo "  Verify your runtime configuration."
+    >&2 echo "  Verify your container configuration."
+    >&2 echo "  Make sure a user and group are specified at runtime."
     exit 1
 fi
 
 # Verify that the user we're running as can write to the container
 if [[ ! -w $FACTORIO_VOLUME ]] ; then
-    >&2 echo "ERROR: Directory '$FACTORIO_VOLUME' is not writable"
-    >&2 echo "  Did you set permissions on the volume correctly?"
+    >&2 echo "ERROR: Volume at '$FACTORIO_VOLUME' is not writable"
+    >&2 echo "  Did you set permissions on the host directory correctly?"
     >&2 echo "  Is the container configured to run as the correct user?"
     exit 1
 fi
@@ -54,11 +57,14 @@ done
 
 # Presence of initial save, generate new if missing
 if [[ ! -f ${FACTORIO_SAVESDIR}/save.zip ]] ; then
+    >&2 echo "WARNING: Initial save file not found, generating new map..."
     "$FACTORIO_HOME"/bin/x64/factorio \
         --create "$FACTORIO_SAVESDIR"/save.zip \
         --map-gen-settings "$FACTORIO_CONFIGDIR"/map-gen-settings.json \
         --map-settings "$FACTORIO_CONFIGDIR"/map-settings.json || exit 1
-    echo "Initial map created using $FACTORIO_CONFIGDIR/map*.json"
+    echo "Initial map created using settings from $FACTORIO_CONFIGDIR/"
+    echo "If you wish to change this, edit the settings, delete save.zip"
+    echo "and start the container again."
 fi
 
 echo "-----------------------------------------------------------------------"
