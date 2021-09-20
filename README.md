@@ -1,5 +1,7 @@
 # Factorio-container
 
+[![CI](https://github.com/mrdaemon/factorio-container/actions/workflows/main-pipeline.yml/badge.svg)](https://github.com/mrdaemon/factorio-container/actions/workflows/main-pipeline.yml)
+
 A hopefully reasonable headless factorio server container
 
 ## What is this?
