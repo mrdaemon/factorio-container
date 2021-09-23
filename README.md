@@ -4,6 +4,9 @@
 
 A hopefully reasonable headless factorio server container
 
+Automatic image builds available on docker hub:
+https://hub.docker.com/r/mrdaemon/factorio
+
 ## What is this?
 
 Yet another headless server for Factorio made by some asshole on the internet because they felt they knew better.
