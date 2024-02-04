@@ -1,8 +1,8 @@
 # Intermediate staging container
-FROM debian:11-slim AS staging
+FROM debian:12-slim AS staging
 
-ARG VERSION="1.1.80"
-ARG SHA256="66c89e01160d40d18f199836ca78d4e6292e828d873df528a70233fe40796635"
+ARG VERSION="1.1.101"
+ARG SHA256="0688a6f615a87bf73d3f46b53dc423ee37cad3fc4412723f3d7450aed1638392"
 ARG URL="https://www.factorio.com/get-download/${VERSION}/headless/linux64"
 
 # Create staging directory
@@ -21,7 +21,7 @@ RUN curl -L $URL -o /tmp/archive_${VERSION}.txz && \
     rm -f /tmp/archive_${VERSION}.txz
 
 # Runtime image
-FROM debian:11-slim
+FROM debian:12-slim
 
 LABEL maintainer="Alexandre Gauthier <alex@lab.underwares.org>" \
     description="Factorio Server"
