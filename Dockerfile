@@ -1,8 +1,8 @@
 # Intermediate staging container
 FROM debian:12-slim AS staging
 
-ARG VERSION="2.0.8"
-ARG SHA256="d9594c4d552a3e4f965b188a4774da8c8b010fc23ddb0efc63b1d94818dde1ca"
+ARG VERSION="2.0.9"
+ARG SHA256="f499077b3e2c1313452c350f1faf17db31cae2a0fa738f69166e97c3caa3c86d"
 ARG URL="https://www.factorio.com/get-download/${VERSION}/headless/linux64"
 
 # Create staging directory
@@ -26,13 +26,13 @@ FROM debian:12-slim
 LABEL maintainer="Alexandre Gauthier <alex@lab.underwares.org>" \
     description="Factorio Server"
 
-ENV FACTORIO_HOME /opt/factorio
-ENV FACTORIO_VOLUME ${FACTORIO_HOME}/volume
-ENV FACTORIO_CONFIGDIR ${FACTORIO_VOLUME}/config
-ENV FACTORIO_SAVESDIR ${FACTORIO_VOLUME}/saves
-ENV FACTORIO_MODSDIR ${FACTORIO_VOLUME}/mods
-ENV FACTORIO_PORT 34197
-ENV FACTORIO_RCON_PORT 27015
+ENV FACTORIO_HOME=/opt/factorio
+ENV FACTORIO_VOLUME=${FACTORIO_HOME}/volume
+ENV FACTORIO_CONFIGDIR=${FACTORIO_VOLUME}/config
+ENV FACTORIO_SAVESDIR=${FACTORIO_VOLUME}/saves
+ENV FACTORIO_MODSDIR=${FACTORIO_VOLUME}/mods
+ENV FACTORIO_PORT=34197
+ENV FACTORIO_RCON_PORT=27015
 
 # Create runtime directories
 RUN mkdir -p /opt/factorio/volume && mkdir -p /opt/factorio/config
