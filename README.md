@@ -25,6 +25,12 @@ That's basically all I wanted so there it is.
 Sure, but whether or not you should is a different question.
 Don't just pull and run random container off the internet and expect a good time, if you feel like using this, review it first.
 
+## Will this stay up to date?
+On a best effort basis, while I'm actively making use of it.
+That said, the Dockerfile takes two arguments: a version number and a SHA256 checksum for the resulting file.
+This makes rebuilding with a new version for your own uses trivial, should you want to.
+PRs are welcome, too!
+
 ## What can I configure
 There are some environment variables you can change.
 The rest is going to be configuration files in the data volume, that are factorio specific.
