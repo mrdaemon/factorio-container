@@ -55,7 +55,7 @@ COPY files/config.ini config/config.ini
 COPY files/run.sh .
 RUN chmod +x ./run.sh
 
-VOLUME [${FACTORIO_VOLUME}]
+VOLUME ${FACTORIO_VOLUME}
 
 EXPOSE ${FACTORIO_PORT}/udp ${FACTORIO_RCON_PORT}/tcp
 
